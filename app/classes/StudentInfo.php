@@ -31,13 +31,33 @@ class StudentInfo
 
     public function index()
     {
-        $this->imageName = $_FILES['image']['name'];
-        echo $this->imageName;
+//        $this->imageName = $_FILES['image']['name'];
+//        echo $this->imageName;
+//        $this->imageDirectory = 'assets/img/upload/'.$this->imageName;
+//
+//        //fuction needs to be called, cannot work alone on its own.
+//        //our files and functions are getting called from the action.php file
+//        // so everything and every path is with respect to action.php
+//
+//        move_uploaded_file($_FILES['image']['tmp_name'],$this->imageDirectory);
+//        echo 'success!';
+
+       // $this->imageUpload();
+//------------------------------------------------------------------
+        $db = 'db.txt';
+        $file = fopen($db,'a');
+        fwrite($file, 'hello world');
+        fclose($file);
+        echo 'success';
+//------------------------------------------------------------------
+
+//------------------------------------------------------------------
+    }
+    protected function imageUpload()
+    {
+        $this->imageName = time().$this->imageFile['name'];
         $this->imageDirectory = 'assets/img/upload/'.$this->imageName;
-        //fuction needs to be called, cannot work alone on its own.
-        //our files and functions are getting called from the action.php file
-        // so everything and every path is with respect to action.php
-        move_uploaded_file($_FILES['image']['tmp_name'],$this->imageDirectory);
+        move_uploaded_file($this->imageFile['tmp_name'], $this->imageDirectory);
         echo 'success!';
     }
 }
